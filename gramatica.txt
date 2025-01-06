@@ -1,0 +1,60 @@
+Program		::= begin Statements end ;
+Statements 	::= Statement ; Statements
+Statements 	::= ''
+Statement 	::= If
+Statement 	::= While
+Statement 	::= For
+Statement 	::= Assign
+If		::= if ( Expression ) { Statements } Else
+Else		::= else { Statements }
+Else		::= ''
+While		::= while ( Expression ) { Statements }
+For		::= for ( ID in Factor ) { Statements }
+Assign		::= ID = Assignable
+Assignable 	::= Factor
+Assignable	::= List
+Assignable 	::= Function
+Function	::= loadPdf ( Factor )
+Function	::= splitPdf ( Factor )
+Function	::= mergePdf ( List )
+Function	::= optimizePdf ( Factor )
+Expression 	::= CompExpr ExpressionP
+Expression 	::= ( Expression )
+ExpressionP 	::= LogicOP Expression
+ExpressionP 	::= ''
+CompExpr	::= Term CompExprP
+CompExprP	::= CompOp Term
+CompExprP	::= ''
+Term		::= Factor TermP
+TermP		::= Operator Factor TermP
+TermP		::= ''
+Factor 		::= - Factor
+Factor 		::= Name
+Factor 		::= Literal
+List		::= { Factor ListTail }
+ListTail	::= , Factor ListTail
+ListTail	::= ''
+Name 		::= ID Index
+Index		::= [ Term ]
+Index		::= ''
+Literal		::= None
+Literal		::= true
+Literal		::= false
+Literal		::= NUMBER
+Literal		::= FLOAT
+Literal		::= STRING
+LogicOP		::= &
+LogicOP		::= |
+CompOp		::= ==
+CompOp		::= !=
+CompOp		::= <
+CompOp		::= >
+CompOp		::= <=
+CompOp		::= >=
+Operator	::= +
+Operator	::= -
+Operator	::= *
+Operator	::= /
+Operator	::= %
+
+
